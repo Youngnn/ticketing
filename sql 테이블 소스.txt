@@ -1,0 +1,53 @@
+create database arts;
+
+use arts
+
+create table concerts(
+     no int not null auto_increment primary key,
+     name varchar(60) not null,          
+     day varchar(30) not null,             
+     time int(20) not null,                    
+     place varchar(40) not null,          
+     price int(20),             
+     reserve varchar(60) not null,             
+     cast varchar(60) not null          
+);
+
+insert into concerts(name, day, time, place, price, reserve, cast)
+    values('노을이 내린밤 울산         ', '21-12-11      ', '  1400', '울산 KBS울산홀          ', '88000', '인터파크', '노을          ');
+
+desc concerts;
+
+select * from concerts;
+
+
+insert into concerts(name, day, time, place, price, reserve, cast)
+     values('우리, 이제 만나요    ', '22-01-22', '1800', '전주 한국소리문화의전당모악당 ', '99000', '티몬', '이승철');
+
+select * from concerts;
+
+
+insert into concerts(name, day, time, place, price, reserve, cast)
+     values('최신혁의 IMAGINE   ', '21-12-25', '1900', '서울 문엔트리             ', '30000', '네이버', '최신혁');
+
+select * from concerts;
+
+insert into concerts(name, day, time, place, price, reserve, cast)
+     values('쇼미10 : THE CLIMAX', '21-12-31', '2000', '대구 엑스코 서관         ', '99000', '네이버', '쇼미10 출연진');
+
+select * from concerts;
+
+insert into concerts(name, day, time, place, price, reserve, cast)
+     values('투성이                   ', '21-12-24', '1930', '울산 KBS울산홀         ', '121000', '네이버', '폴킴');
+
+select * from concerts;
+
+insert into concerts(name, day, time, place, price, reserve, cast)
+     values('2F 단독 콘서트 if       ', '21-12-24', '1900', '예스24 라이브홀        ', ' 110000', '예스24', '신용재, 김원주');
+
+select * from concerts;             
+
+insert into concerts(name, day, time, place, price, reserve, cast)
+     values('부활 크리스마스 콘서트', '21-12-25', '1700', '스위스그랜드호텔서울컨벤션홀', '99000', '네이버', '부활');
+
+select * from concerts;

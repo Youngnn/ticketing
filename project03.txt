@@ -1,0 +1,85 @@
+import java.io.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.sql.Connection;
+import java.sql.Date;
+import java.text.SimpleDateFormat; 
+import java.sql.Statement;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+
+
+public class project03 {
+
+	final static String sql = "insert  into concerts(name, day, time, place, price, reserve, cast)" + "values(?,?,?,?,?,?,?)";
+
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String driver = "com.mysql.cj.jdbc.Driver";
+		String url="jdbc:mysql://localhost:3306/arts?serverTimezone=UTC";
+		Connection con = null;
+		PreparedStatement pstmt = null;		
+		
+		String cname, cday, ctime, cplace, nprice, creserve, ccast;
+
+
+		
+		try {
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+			System.out.println("회원 정보 입력하기");			
+			System.out.println("공연명을 입력하세요 >> ");
+			cname = br.readLine();			  
+			System.out.println("날짜를 입력하세요 >> ");
+			cday = br.readLine();			
+			System.out.println("시간를 입력하세요 >> ");
+			ctime = br.readLine();			
+			System.out.println("장소를 입력하세요 >> ");
+			cplace = br.readLine();
+			System.out.println("가격를 입력하세요 >> ");
+			nprice = br.readLine();
+			System.out.println("예약웹을 입력하세요 >> ");
+			creserve = br.readLine();
+			System.out.println("등장인물를 입력하세요 >> ");
+			ccast = br.readLine();
+			
+			
+			
+			Class.forName(driver);
+			
+			con = DriverManager.getConnection(url, "root", "1234");
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, cname);
+			pstmt.setString(2, cday);
+			pstmt.setString(3, ctime);
+			pstmt.setString(4, cplace);
+			pstmt.setString(5, nprice);
+			pstmt.setString(6, creserve);
+			pstmt.setString(7, ccast);
+		
+			
+			
+			int rowCount = pstmt.executeUpdate();
+			
+			System.out.println(rowCount);
+			
+		}catch(Exception e) {
+			System.out.println(e);
+		} finally {
+			try {
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(con != null) {
+					con.close();
+				}
+			}catch(Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		
+	}
+
+}
